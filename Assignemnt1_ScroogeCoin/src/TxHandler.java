@@ -9,7 +9,6 @@ public class TxHandler {
     UTXOPool utxoPool;
 
     public TxHandler(UTXOPool utxoPool) {
-        // IMPLEMENT THIS
         this.utxoPool = utxoPool;
     }
 
