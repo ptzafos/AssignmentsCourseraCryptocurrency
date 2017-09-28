@@ -5,8 +5,12 @@ public class TxHandler {
      * {@code utxoPool}. This should make a copy of utxoPool by using the UTXOPool(UTXOPool uPool)
      * constructor.
      */
+
+    UTXOPool utxoPool;
+
     public TxHandler(UTXOPool utxoPool) {
         // IMPLEMENT THIS
+        this.utxoPool = utxoPool;
     }
 
     /**
