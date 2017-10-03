@@ -1,3 +1,5 @@
+import org.omg.CORBA.TRANSACTION_MODE;
+
 public class TxHandler {
 
     /**
@@ -22,8 +24,24 @@ public class TxHandler {
      *     values; and false otherwise.
      */
     public boolean isValidTx(Transaction tx) {
-        // IMPLEMENT THIS
-    }
+
+        boolean exist = true;
+        boolean validsign = true;
+        for(Transaction.Input input: tx.getInputs()) {
+            UTXO temp = new UTXO(input.prevTxHash,input.outputIndex);
+            if(!utxoPool.contains(temp)) {
+                exist = false;
+            }
+        }
+        for(Transaction.Input input: tx.getInputs()) {
+            if(!Crypto.verifySignature(tx.getOutput(input.outputIndex).address,tx.getHash(),input.signature)) {
+                validsign = validsign;
+            }
+        }
+       return exist & validsign;
+
+
+}
 
     /**
      * Handles each epoch by receiving an unordered array of proposed transactions, checking each
@@ -31,7 +49,9 @@ public class TxHandler {
      * updating the current UTXO pool as appropriate.
      */
     public Transaction[] handleTxs(Transaction[] possibleTxs) {
-        // IMPLEMENT THIS
+
+
+        return possibleTxs;
     }
 
 }
